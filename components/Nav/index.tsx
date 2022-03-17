@@ -7,10 +7,10 @@ const Nav = () => {
   const [user] = useAuthState(auth)
 
   return (
-    <div className="p-5 text-slate-800 border">
+    <div className="p-5 text-slate-800">
       <div className="inline-flex items-center gap-2">
         <img className="h-10 w-10 rounded-full" src={user?.photoURL!} alt="" />
-        <h2 className="text-lg font-light">
+        <h2 className="text-lg font-light leading-6">
           Hello, <br /> <span className="font-medium">{user?.displayName}</span>
         </h2>
       </div>

@@ -9,8 +9,8 @@ interface Props {
 
 const Sidebar = ({ name, photoURL }: Props) => {
   return (
-    <div className="flex h-screen w-20 justify-center border">
-      <div className='mt-24'>
+    <div className="flex h-screen w-20 justify-center">
+      <div className='mt-32'>
         <Button>
           <IconCloud />
         </Button>

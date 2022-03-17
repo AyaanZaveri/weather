@@ -20,7 +20,7 @@ const Profile = ({ name, photoURL }: Props) => {
         />
         <div className="flex flex-col">
           <span className="text-[10px] text-gray-600">You're signed in as</span>
-          <span className="text-sm font-semibold leading-4 text-gray-800">
+          <span className="text-sm font-semibold text-gray-800">
             {name}
           </span>
         </div>
