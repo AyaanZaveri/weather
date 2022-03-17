@@ -11,10 +11,12 @@ const Home: NextPage = () => {
   console.log(user)
 
   return (
-    <div>
-      <div className="fixed flex h-screen items-center">
-        <Nav />
+    <div className='font-outfit'>
+      <div className="fixed flex h-screen flex-col items-center">
         <Sidebar name={user?.displayName!} photoURL={user?.photoURL!} />
+      </div>
+      <div className="ml-20">
+        <Nav />
       </div>
     </div>
   )
