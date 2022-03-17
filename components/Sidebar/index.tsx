@@ -1,5 +1,6 @@
 import { IconCloud } from '@tabler/icons'
 import React from 'react'
+import Button from '../Button'
 
 interface Props {
   name: string
@@ -8,11 +9,11 @@ interface Props {
 
 const Sidebar = ({ name, photoURL }: Props) => {
   return (
-    <div className="ml-3 flex h-screen w-14 rounded-lg bg-gray-50">
-      <div className="mx-5 flex w-full flex-col">
-        <button>
+    <div className="flex h-screen w-20 justify-center">
+      <div className='mt-20'>
+        <Button>
           <IconCloud />
-        </button>
+        </Button>
       </div>
     </div>
   )
