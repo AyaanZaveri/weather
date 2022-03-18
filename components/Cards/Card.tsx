@@ -22,7 +22,7 @@ const Card = ({
 }: Props) => {
   return (
     <div>
-      <div className={`relative flex h-[20rem] w-[26rem] flex-col justify-between overflow-hidden rounded-3xl p-6 text-slate-800 ${background}`}>
+      <div className={`relative flex h-[22rem] w-[28rem] flex-col justify-between overflow-hidden rounded-3xl p-6 text-slate-800 ${background}`}>
         {/* Heading */}
         <div className="inline-flex items-center gap-2">
           <div className="h-10 w-10 rounded-full bg-white p-1">
@@ -40,7 +40,7 @@ const Card = ({
         <div>
           <div className="flex flex-col">
             <div className="inline-flex items-center gap-3">
-              <h1 className="text-4xl">{temperature}</h1>
+              <h1 className="text-5xl">{temperature}</h1>
               <div className="rounded-md bg-white px-2 py-0.5 text-sm">
                 {feelsLike}
               </div>

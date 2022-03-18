@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { getCurrentWeather } from '../../lib/getCurrentWeather'
 import { getDailyForecast } from '../../lib/getDailyForecast'
 import Card from './Card'
 
 const Weather = () => {
-
-  
 
   return (
     <div>
