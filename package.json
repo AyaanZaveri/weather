@@ -10,13 +10,15 @@
     "@tabler/icons": "^1.56.0",
     "@tailwindcss/forms": "^0.5.0",
     "axios": "^0.26.1",
+    "change-case": "^4.1.2",
     "firebase": "^9.6.8",
     "luxon": "^2.3.1",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-firebase-hooks": "^5.0.3",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "title-case": "^3.0.3"
   },
   "devDependencies": {
     "@types/node": "17.0.4",
