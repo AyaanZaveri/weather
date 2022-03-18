@@ -24,13 +24,15 @@ const Search = () => {
   }
 
   const cityToRoute = (city: string) => {
-    return city
-      .toLowerCase()
-      .split(',')
-      .slice(0, 2)
-      .map((city) => city.toLowerCase().trim())
-      .reverse()
-      .join('/')
+    return (
+      city
+        .toLowerCase()
+        .split(',')
+        .map((city) => city.toLowerCase().trim())
+        .filter((city, index) => index !== 1)
+        .reverse()
+        .join('/')
+    )
   }
 
   useEffect(() => {
