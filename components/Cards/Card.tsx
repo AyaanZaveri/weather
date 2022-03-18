@@ -8,6 +8,7 @@ interface Props {
   feelsLike: string
   weather: string
   infoCards: { [key: string]: string }
+  background: string
 }
 
 const Card = ({
@@ -17,15 +18,11 @@ const Card = ({
   feelsLike,
   weather,
   infoCards,
+  background
 }: Props) => {
   return (
     <div>
-      <div className="relative flex h-[20rem] w-[26rem] flex-col  justify-between overflow-hidden rounded-3xl bg-slate-100 p-6 text-slate-800">
-        {/* <img
-        className="absolute -z-10 h-full w-full"
-        src=""
-        alt=""
-      /> */}
+      <div className={`relative flex h-[20rem] w-[26rem] flex-col justify-between overflow-hidden rounded-3xl p-6 text-slate-800 ${background}`}>
         {/* Heading */}
         <div className="inline-flex items-center gap-2">
           <div className="h-10 w-10 rounded-full bg-white p-1">
@@ -36,7 +33,7 @@ const Card = ({
           </div>
           <div className="flex flex-col">
             <span className="font-semibold">{category}</span>
-            <span className="font-light text-slate-500">{message}</span>
+            <span className="font-light">{message}</span>
           </div>
         </div>
         {/* Weather Info */}
