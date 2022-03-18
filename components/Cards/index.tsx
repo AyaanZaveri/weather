@@ -1,11 +1,11 @@
 import React from 'react'
 import { getCurrentWeather } from '../../lib/getCurrentWeather'
+import { getDailyForecast } from '../../lib/getDailyForecast'
 import Card from './Card'
 
 const Weather = () => {
-  getCurrentWeather('New York').then((data) => {
-    console.log(data)
-  })
+
+  
 
   return (
     <div>
