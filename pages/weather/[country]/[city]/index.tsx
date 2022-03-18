@@ -1,10 +1,20 @@
 import axios from 'axios'
+import { useRouter } from 'next/router'
 import React from 'react'
+import { titleCase } from 'title-case'
 
 const CityIndex = ({ currentWeatherData }: any) => {
-  console.log(currentWeatherData)
+  currentWeatherData = JSON.parse(currentWeatherData)
+  const router = useRouter()
+  const { country: country, city } = router.query
 
-  return <div>CityIndex</div>
+  return (
+    <div>
+      <h1>
+        {titleCase(city as string)}, {titleCase(country as string)}
+      </h1>
+    </div>
+  )
 }
 
 export const getServerSideProps = async (context: any) => {
