@@ -23,7 +23,14 @@ const Search = () => {
       .catch((err) => console.log(err))
   }
 
-  console.log(pickedCity)
+  const cityToRoute = (city: string) => {
+    return city
+      .split(',')
+      .slice(0, 2)
+      .map((city) => city.toLowerCase().trim())
+      .reverse()
+      .join('/')
+  }
 
   useEffect(() => {
     fetchCity()
@@ -49,18 +56,20 @@ const Search = () => {
       </div>
       {cities.length > 0 ? (
         <ul
-          className={`absolute w-full z-10 mt-2 overflow-hidden rounded-lg border border-slate-200 bg-white ${
+          className={`absolute z-10 mt-2 w-full overflow-hidden rounded-lg border border-slate-200 bg-white ${
             showCities ? 'block' : 'hidden'
           }`}
         >
           {cities.map((city: string) => (
-            <li
-              key={city}
-              className="flex cursor-pointer items-center justify-between px-4 py-2 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
-              onClick={() => setPickedCity(city)}
-            >
-              <span className="text-sm font-light text-slate-500">{city}</span>
-            </li>
+            <a href={`/weather/${cityToRoute(pickedCity)}`}>
+              <li
+                key={city}
+                className="flex cursor-pointer items-center justify-between px-4 py-2 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
+                onClick={() => setPickedCity(city)}
+              >
+                <span className="font text-sm text-slate-600">{city}</span>
+              </li>
+            </a>
           ))}
         </ul>
       ) : null}
