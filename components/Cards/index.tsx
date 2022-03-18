@@ -4,7 +4,7 @@ import Card from './Card'
 const Weather = () => {
   return (
     <div>
-      <div className="grid grid-flow-col place-content-start gap-5">
+      <div className="flex flex-row flex-wrap gap-5 transition">
         <Card
           category="Weather"
           message="Go for a walk."
