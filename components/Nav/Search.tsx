@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { IconSearch } from '@tabler/icons'
 
 const Search = () => {
   const [cities, setCities] = useState<string[]>([])
   const [pickedCity, setPickedCity] = useState<string>('')
   const [input, setInput] = useState('')
+  const [showCities, setShowCities] = useState(false)
 
-  const fetchCity = async (e: any) => {
-    e.preventDefault()
-    setInput(e.target.value)
+  const fetchCity = async () => {
     if (!input) return
 
     await axios
@@ -23,23 +23,40 @@ const Search = () => {
       .catch((err) => console.log(err))
   }
 
-  console.log(cities)
+  console.log(pickedCity)
+
+  useEffect(() => {
+    fetchCity()
+  }, [input])
 
   return (
-    <div>
-      <input
-        value={input}
-        type="text"
-        className="w-full rounded-md border border-slate-200 bg-white px-4 py-2 text-slate-600 transition hover:bg-slate-50 focus:border-blue-500 focus:shadow-lg focus:shadow-blue-200 focus:outline-none focus:ring focus:ring-blue-200 active:bg-blue-100 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-        onChange={(e) => fetchCity(e)}
-        placeholder="Enter a city..."
-      />
+    <div className="relative w-4/12">
+      <div className="inline-flex w-full items-center">
+        <IconSearch className="pointer-events-none absolute right-3 h-5 w-5 transform text-slate-600" />
+        <input
+          value={input}
+          type="text"
+          className="w-full rounded-md border border-slate-200 bg-white px-4 py-2 text-slate-600 transition hover:bg-slate-50 focus:border-blue-500 focus:shadow-lg focus:shadow-blue-200 focus:outline-none focus:ring focus:ring-blue-200 active:bg-blue-100 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter a city..."
+          onFocus={() => setShowCities(true)}
+          onBlur={() => {
+            setTimeout(() => {
+              setShowCities(false)
+            }, 200)
+          }}
+        />
+      </div>
       {cities.length > 0 ? (
-        <ul className="absolute top-0 left-0 right-0 z-10 mt-4 overflow-y-auto overflow-x-hidden rounded-md bg-white shadow-lg">
+        <ul
+          className={`absolute w-full z-10 mt-2 overflow-hidden rounded-lg border border-slate-200 bg-white/30 backdrop-blur-sm ${
+            showCities ? 'block' : 'hidden'
+          }`}
+        >
           {cities.map((city: string) => (
             <li
               key={city}
-              className="flex cursor-pointer items-center justify-between px-4 py-2 hover:bg-slate-100 dark:bg-slate-800 dark:text-white"
+              className="flex cursor-pointer items-center justify-between px-4 py-2 transition-all delay-200 ease-in-out hover:bg-blue-50 dark:bg-slate-800 dark:text-white"
               onClick={() => setPickedCity(city)}
             >
               <span className="text-sm font-light text-slate-500">{city}</span>
