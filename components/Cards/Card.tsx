@@ -20,7 +20,7 @@ const Card = ({
 }: Props) => {
   return (
     <div>
-      <div className="relative flex h-[20rem] w-[26rem] flex-col justify-between overflow-hidden rounded-3xl bg-slate-100 p-6 text-slate-800">
+      <div className="relative flex h-[20rem] w-[26rem] flex-col  justify-between overflow-hidden rounded-3xl bg-slate-100 p-6 text-slate-800">
         {/* <img
         className="absolute -z-10 h-full w-full"
         src=""
