@@ -4,7 +4,6 @@ import { getDailyForecast } from '../../lib/getDailyForecast'
 import Card from './Card'
 
 const Weather = () => {
-
   return (
     <div>
       <div className="flex flex-row flex-wrap gap-5 transition">
@@ -19,7 +18,7 @@ const Weather = () => {
             visibility: '4.3 km',
             humidity: '87%',
           }}
-          background="bg-gradient-to-tr from-yellow-100 via-amber-100 to-orange-100"
+          background="gradient-orange"
         />
         <Card
           category="Summary"
@@ -32,7 +31,7 @@ const Weather = () => {
             windSpeed: '3.1 m/s',
             timeZone: 'Eastern',
           }}
-          background="bg-gradient-to-tr from-sky-100 via-cyan-100 to-teal-100"
+          background="gradient-blue"
         />
       </div>
     </div>

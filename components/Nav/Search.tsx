@@ -25,6 +25,7 @@ const Search = () => {
 
   const cityToRoute = (city: string) => {
     return city
+      .toLowerCase()
       .split(',')
       .slice(0, 2)
       .map((city) => city.toLowerCase().trim())
@@ -35,6 +36,8 @@ const Search = () => {
   useEffect(() => {
     fetchCity()
   }, [input])
+
+  console.log(cityToRoute(pickedCity))
 
   return (
     <div className="relative w-4/12">
@@ -61,15 +64,15 @@ const Search = () => {
           }`}
         >
           {cities.map((city: string) => (
-            <a href={`/weather/${cityToRoute(pickedCity)}`}>
-              <li
-                key={city}
-                className="flex cursor-pointer items-center justify-between px-4 py-2 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
-                onClick={() => setPickedCity(city)}
-              >
-                <span className="font text-sm text-slate-600">{city}</span>
-              </li>
-            </a>
+            // <a href={`/weather/${cityToRoute(pickedCity)}`}>
+            <li
+              key={city}
+              className="flex cursor-pointer items-center justify-between px-4 py-2 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
+              onClick={() => setPickedCity(city)}
+            >
+              <span className="font text-sm text-slate-600">{city}</span>
+            </li>
+            // </a>
           ))}
         </ul>
       ) : null}
