@@ -67,7 +67,7 @@ const Search = () => {
             // <a href={`/weather/${cityToRoute(pickedCity)}`}>
             <li
               key={city}
-              className="flex cursor-pointer items-center justify-between px-4 py-2 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
+              className="flex cursor-pointer items-center justify-between px-4 py-3 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
               onClick={() => setPickedCity(city)}
             >
               <span className="font text-sm text-slate-600">{city}</span>

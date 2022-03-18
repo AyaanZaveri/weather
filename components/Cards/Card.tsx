@@ -65,7 +65,7 @@ const Card = ({
               {infoCards[Object.keys(infoCards)[0]]}
             </span>
           </div>
-          <div className="flex h-20 w-28 flex-col items-center justify-center  rounded-2xl bg-lime-300">
+          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-lime-300">
             <span className="text-sm font-light">
               {titleCase(
                 Object.keys(infoCards)[1]
