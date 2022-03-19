@@ -42,7 +42,7 @@ const Search = () => {
         <input
           value={input}
           type="text"
-          className="w-full rounded-md border border-slate-200 bg-white px-4 py-2 text-slate-600 transition hover:bg-slate-50 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-200 focus:outline-none focus:ring focus:ring-orange-200 active:bg-orange-100 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+          className="w-full rounded-md border border-slate-200 bg-white px-4 py-2 text-slate-600 transition duration-500 ease-in-out hover:bg-slate-50 focus:border-orange-500 focus:shadow-lg focus:shadow-orange-200 focus:outline-none focus:ring focus:ring-orange-200 active:bg-orange-100 dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter a city..."
           onFocus={() => setShowCities(true)}
@@ -63,7 +63,7 @@ const Search = () => {
             <a href={`/weather/${cityToRoute(pickedCity)}`}>
               <li
                 key={city.place_name}
-                className="flex cursor-pointer items-center justify-between px-4 py-3 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
+                className="flex cursor-pointer items-center justify-between px-4 py-3 transition-all duration-500 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
                 onClick={() => setPickedCity(city.place_name)}
               >
                 <span className="font text-sm text-slate-600">

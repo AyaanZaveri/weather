@@ -18,7 +18,7 @@ const Button = ({ children, onClick, variant }: Props) => {
   return (
     <button
       onClick={onClick}
-      className={`grid place-items-center rounded-xl p-2 font-outfit transition-all delay-200 hover:rounded-lg ${selectedVariant}`}
+      className={`grid place-items-center rounded-xl p-2 font-outfit transition-all duration-500 ease-in-out hover:rounded-lg ${selectedVariant}`}
     >
       {children}
     </button>

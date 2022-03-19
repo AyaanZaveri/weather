@@ -73,13 +73,13 @@ const CityIndex = ({ currentWeatherData }: any) => {
               {titleCase(city as string)}, {titleCase(country as string)}
             </h1>
             <img
-              className="w-7 opacity-90"
+              className="w-7 rounded-sm opacity-90 transition duration-500 ease-in-out hover:shadow-lg hover:shadow-orange-200"
               src={countryFlag ? countryFlag : ''}
               alt=""
             />
             <HiStar
               onClick={addFavorite}
-              className="hover: h-5 w-5 transition delay-200 ease-in-out hover:text-orange-500"
+              className="h-5 w-5 text-slate-800 transition duration-500 ease-in-out hover:text-orange-500"
             />
           </div>
           <Cards weatherData={currentWeatherData} />

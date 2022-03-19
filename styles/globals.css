@@ -12,12 +12,12 @@
 }
 
 .gradient-blue {
-    background: linear-gradient(270deg, #e0f2fe, #cffafe, #ccfbf1);
-    background-size: 600% 600%;
-    
-    -webkit-animation: MovingGradient 3s ease infinite;
-    -moz-animation: MovingGradient 3s ease infinite;
-    animation: MovingGradient 3s ease infinite;
+  background: linear-gradient(270deg, #e0f2fe, #cffafe, #ccfbf1);
+  background-size: 600% 600%;
+
+  -webkit-animation: MovingGradient 3s ease infinite;
+  -moz-animation: MovingGradient 3s ease infinite;
+  animation: MovingGradient 3s ease infinite;
 }
 
 @-webkit-keyframes MovingGradient {

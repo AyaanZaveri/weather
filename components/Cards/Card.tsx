@@ -18,14 +18,16 @@ const Card = ({
   feelsLike,
   weather,
   infoCards,
-  background
+  background,
 }: Props) => {
   return (
     <div>
-      <div className={`relative flex h-[22rem] w-[28rem] flex-col justify-between overflow-hidden rounded-3xl p-6 text-slate-800 ${background}`}>
+      <div
+        className={`relative flex h-[22rem] w-[28rem] flex-col justify-between overflow-hidden rounded-3xl p-6 text-slate-800 transition duration-500 ease-in-out ${background}`}
+      >
         {/* Heading */}
         <div className="inline-flex items-center gap-2">
-          <div className="h-10 w-10 rounded-full bg-white p-1">
+          <div className="h-10 w-10 rounded-full bg-white p-1 transition duration-500 ease-in-out hover:shadow-lg hover:shadow-white">
             <img
               src="https://basmilius.github.io/weather-icons/production/fill/all/clear-day.svg"
               alt=""
@@ -33,7 +35,7 @@ const Card = ({
           </div>
           <div className="flex flex-col">
             <span className="font-semibold">{category}</span>
-            <span className="font-light">{message}</span>
+            <span className="text-sm font-light">{message}</span>
           </div>
         </div>
         {/* Weather Info */}
@@ -41,18 +43,22 @@ const Card = ({
           <div className="flex flex-col">
             <div className="inline-flex items-center gap-3">
               <h1 className="text-5xl">{temperature}</h1>
-              <div className="rounded-md bg-white px-2 py-0.5 text-sm">
-                {feelsLike}
+              <div className="group relative flex items-center justify-center">
+                <div className="rounded-md bg-white px-2 py-0.5 text-sm">
+                  {feelsLike}
+                </div>
               </div>
             </div>
             <div>
-              <span className="text-sm">{weather}</span>
+              <span className="text-sm transition-all duration-500 ease-in-out hover:text-base">
+                {weather}
+              </span>
             </div>
           </div>
         </div>
         {/* Info Cards */}
-        <div className="flex flex-row justify-between">
-          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-slate-800 leading-5">
+        <div className="flex flex-row justify-between items-center">
+          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-slate-800 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-300">
             <span className="text-sm font-light text-white">
               {titleCase(
                 Object.keys(infoCards)[0]
@@ -65,7 +71,7 @@ const Card = ({
               {infoCards[Object.keys(infoCards)[0]]}
             </span>
           </div>
-          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-lime-300">
+          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-lime-300 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-lime-200">
             <span className="text-sm font-light">
               {titleCase(
                 Object.keys(infoCards)[1]
@@ -78,7 +84,7 @@ const Card = ({
               {infoCards[Object.keys(infoCards)[1]]}
             </span>
           </div>
-          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-white">
+          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-white transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-100">
             <span className="text-sm font-light">
               {titleCase(
                 Object.keys(infoCards)[2]
