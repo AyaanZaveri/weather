@@ -1,18 +1,31 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
 import { titleCase } from 'title-case'
+import Cards from '../../../../components/Cards/index'
+import Nav from '../../../../components/Nav'
+import Sidebar from '../../../../components/Sidebar'
+import { auth } from '../../../../firebase'
 
 const CityIndex = ({ currentWeatherData }: any) => {
   currentWeatherData = JSON.parse(currentWeatherData)
   const router = useRouter()
   const { country: country, city } = router.query
 
+  const [user] = useAuthState(auth)
+
   return (
-    <div>
-      <h1>
-        {titleCase(city as string)}, {titleCase(country as string)}
-      </h1>
+    <div className="font-outfit">
+      <div className="fixed flex h-screen flex-col items-center">
+        <Sidebar name={user?.displayName!} photoURL={user?.photoURL!} />
+      </div>
+      <div className="fixed ml-20 p-2">
+        <Nav />
+        <div className="p-5">
+          <Cards weatherData={currentWeatherData} />
+        </div>
+      </div>
     </div>
   )
 }
