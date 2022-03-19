@@ -36,14 +36,14 @@ const Cards = ({ weatherData }: any) => {
         <div className="flex flex-row flex-wrap gap-5 transition">
           <Card
             category="Weather"
-            message={`${weatherData.weather[0].main}`}
-            temperature={`${Math.round(weatherData.main.temp)}°C`}
-            feelsLike={`${Math.round(weatherData.main.feels_like)}°C`}
-            weather={`${titleCase(weatherData.weather[0].description)}`}
+            message={`${weatherData?.weather[0]?.main}`}
+            temperature={`${Math.round(weatherData?.main.temp)}°C`}
+            feelsLike={`${Math.round(weatherData?.main.feels_like)}°C`}
+            weather={`${titleCase(weatherData?.weather[0].description)}`}
             infoCards={{
-              pressure: `${weatherData.main.pressure} hPa`,
-              visibility: `${weatherData.visibility / 1000} km`,
-              humidity: `${weatherData.main.humidity}%`,
+              pressure: `${weatherData?.main.pressure} hPa`,
+              visibility: `${weatherData?.visibility / 1000} km`,
+              humidity: `${weatherData?.main.humidity}%`,
             }}
             background="gradient-orange"
           />
@@ -55,13 +55,13 @@ const Cards = ({ weatherData }: any) => {
             weather="West Wind"
             infoCards={{
               sunset: `${convertUnixTime(
-                weatherData.sys.sunset,
+                weatherData?.sys.sunset,
                 'seconds',
                 false
               )}`,
-              windSpeed: `${weatherData.wind.speed} m/s`,
+              windSpeed: `${weatherData?.wind.speed} m/s`,
               timeZone: `${
-                DateTime.fromSeconds(weatherData.timezone).offsetNameShort
+                DateTime.fromSeconds(weatherData?.timezone).offsetNameShort
               }`,
             }}
             background="gradient-blue"

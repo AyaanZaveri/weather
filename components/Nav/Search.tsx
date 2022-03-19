@@ -24,6 +24,8 @@ const Search = () => {
   const cityToRoute = (city: string) => {
     return city
       .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
       .split(',')
       .map((city) => city.toLowerCase().trim())
       .filter((city, index) => index !== 1)

@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     longitude: 0,
   })
 
-  const [weatherData, setWeatherData] = useState({})
+  const [weatherData, setWeatherData] = useState<any>({})
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
@@ -55,9 +55,13 @@ const Home: NextPage = () => {
       </div>
       <div className="fixed ml-20 p-2">
         <Nav />
-        <div className="p-5">
-          <h1 className="text-3xl font-medium text-slate-800">Welcome Back!</h1>
-          <Cards />
+        <div className="flex flex-col gap-7 p-5">
+          <div className="inline-flex items-center gap-3">
+            <h1 className="text-3xl font-medium text-slate-800">
+              Welcome Back!
+            </h1>
+          </div>
+          {weatherData.weather ? <Cards weatherData={weatherData} /> : null}
         </div>
       </div>
     </div>
