@@ -3,7 +3,7 @@ import axios from 'axios'
 import { IconSearch } from '@tabler/icons'
 
 const Search = () => {
-  const [cities, setCities] = useState<string[]>([])
+  const [cities, setCities] = useState<any[]>([])
   const [pickedCity, setPickedCity] = useState<string>('')
   const [input, setInput] = useState('')
   const [showCities, setShowCities] = useState(false)
@@ -16,9 +16,7 @@ const Search = () => {
         `https://api.mapbox.com/geocoding/v5/mapbox.places/${input}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_KEY}&autocomplete=true&types=place`
       )
       .then((res) => {
-        setCities(
-          res.data.features.map((city: { place_name: any }) => city.place_name)
-        )
+        setCities(res.data.features.map((city: any) => city))
       })
       .catch((err) => console.log(err))
   }
@@ -36,8 +34,6 @@ const Search = () => {
   useEffect(() => {
     fetchCity()
   }, [input])
-
-  console.log(cityToRoute(pickedCity))
 
   return (
     <div className="relative w-4/12">
@@ -63,14 +59,16 @@ const Search = () => {
             showCities ? 'block' : 'hidden'
           }`}
         >
-          {cities.map((city: string) => (
+          {cities.map((city: any) => (
             <a href={`/weather/${cityToRoute(pickedCity)}`}>
               <li
-                key={city}
+                key={city.place_name}
                 className="flex cursor-pointer items-center justify-between px-4 py-3 transition-all delay-200 ease-in-out hover:bg-orange-50 dark:bg-slate-800 dark:text-white"
-                onClick={() => setPickedCity(city)}
+                onClick={() => setPickedCity(city.place_name)}
               >
-                <span className="font text-sm text-slate-600">{city}</span>
+                <span className="font text-sm text-slate-600">
+                  {city.place_name}
+                </span>
               </li>
             </a>
           ))}
