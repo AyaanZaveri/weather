@@ -1,3 +1,4 @@
+import axios from 'axios'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -13,18 +14,39 @@ const Home: NextPage = () => {
   console.log(user)
 
   const [coordinates, setCoordinates] = useState({
-    latitude: '',
-    longitude: '',
+    latitude: 0,
+    longitude: 0,
   })
+
+  const [weatherData, setWeatherData] = useState({})
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log('Latitude is :', position.coords.latitude)
-      console.log('Longitude is :', position.coords.longitude)
+      setCoordinates({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      })
     })
   }, [])
 
-  
+  const getCurrentWeather = () => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_KEY}&units=metric`
+      )
+      .then((res) => {
+        setWeatherData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  useEffect(() => {
+    getCurrentWeather()
+  })
+
+  console.log(weatherData)
 
   return (
     <div className="font-outfit">
