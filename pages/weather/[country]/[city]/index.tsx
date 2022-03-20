@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { titleCase } from 'title-case'
 import Cards from '../../../../components/Cards/index'
@@ -10,6 +10,7 @@ import { auth, db } from '../../../../firebase'
 import * as countries from 'i18n-iso-countries'
 import { HiStar } from 'react-icons/hi'
 import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
+const ColorThief = require('colorthief');
 
 const CityIndex = ({ currentWeatherData }: any) => {
   currentWeatherData = JSON.parse(currentWeatherData)
@@ -29,6 +30,10 @@ const CityIndex = ({ currentWeatherData }: any) => {
     ?.toLowerCase()
 
   const countryFlag = `https://flagicons.lipis.dev/flags/4x3/${countryCode}.svg`
+
+  const flagRef = useRef(null)
+
+  const [flagColor, setFlagColor] = useState('#000000')
 
   const usersRef = collection(db, 'users')
 
@@ -64,10 +69,21 @@ const CityIndex = ({ currentWeatherData }: any) => {
               className="w-7 rounded-sm opacity-90 transition duration-500 ease-in-out hover:shadow-lg hover:shadow-orange-200"
               src={countryFlag ? countryFlag : ''}
               alt=""
+              ref={flagRef}
+              onLoad={() => {
+                const colorThief = new ColorThief()
+                const color = colorThief.getColor(flagRef.current)
+                const colorHex = `#${color[0].toString(16)}${color[1].toString(
+                  16
+                )}${color[2].toString(16)}`
+                setFlagColor(colorHex)
+              }}
+              crossOrigin="anonymous"
             />
             <HiStar
               onClick={addFavorite}
-              className="h-5 w-5 text-slate-800 transition duration-500 ease-in-out hover:text-orange-500"
+              className={`h-5 w-5 transition hover:drop-shadow-lg duration-500 ease-in-out hover:text-orange-500`}
+              style={{ color: flagColor }}
             />
           </div>
           <Cards weatherData={currentWeatherData} />

@@ -12,6 +12,7 @@
     "axios": "^0.26.1",
     "change-case": "^4.1.2",
     "cheerio": "^1.0.0-rc.10",
+    "colorthief": "^2.3.2",
     "firebase": "^9.6.8",
     "i18n-iso-countries": "^7.3.0",
     "luxon": "^2.3.1",
