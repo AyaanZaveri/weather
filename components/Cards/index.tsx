@@ -103,7 +103,7 @@ const Cards = ({ weatherData }: any) => {
                 'seconds',
                 false
               )}`,
-              moonPhase: `${moonPhase}`,
+              moonPhase: ``,
               timeZone: `${
                 timeZone
                   ? timeZone

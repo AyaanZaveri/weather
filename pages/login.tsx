@@ -7,7 +7,11 @@ export default function Example() {
     <>
       <div className="flex h-screen flex-col items-center justify-center gap-8">
         <h1 className="font-outfit text-4xl font-bold text-slate-800">Login</h1>
-        <Button onClick={() => signInWithPopup(auth, provider)}>
+        <Button
+          onClick={() => signInWithPopup(auth, provider)}
+          variant="selected"
+          padding="py-2 px-3"
+        >
           Sign In With Google
         </Button>
       </div>
