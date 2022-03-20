@@ -68,9 +68,9 @@ const Home: NextPage = () => {
       <div className="fixed flex h-screen flex-col items-center">
         <Sidebar name={user?.displayName!} photoURL={user?.photoURL!} />
       </div>
-      <div className="scrollbar fixed ml-20 h-full overflow-y-auto p-2">
+      <div className="scrollbar fixed ml-20 h-full overflow-y-auto p-2 w-9/12">
         <Nav />
-        <div className="flex flex-col gap-7 p-5">
+        <div className="flex flex-col gap-7 p-5 w-full">
           <div className="inline-flex items-center gap-3">
             <h1 className="text-3xl font-medium text-slate-800">
               Welcome Back!

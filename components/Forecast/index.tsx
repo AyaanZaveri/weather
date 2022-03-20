@@ -17,11 +17,16 @@ const Forecast = ({ dailyWeatherData }: any) => {
       <h1 className="text-2xl font-medium text-slate-800">
         How's the temperature today?
       </h1>
-      <div className="flex">
-        <div className="grid w-full grid-cols-4 gap-3">
+      <div className="flex flex-wrap">
+        <div
+          className="grid w-full grid-cols-4 gap-3"
+          style={{
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          }}
+        >
           {todayWeather?.map((day: any, index: number) => (
-            <div className="w-full" key={index}>
-              <div className="flex h-28 w-full flex-row justify-between rounded-2xl bg-orange-500 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-orange-200">
+            <div key={index}>
+              <div className="flex h-28 flex-row justify-between rounded-2xl bg-orange-500 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-orange-200">
                 <div className="flex items-center">
                   <div className="flex flex-col items-start justify-center ">
                     <span className="ml-4 text-sm font-light text-white">

@@ -38,7 +38,7 @@ const Search = () => {
   }, [input])
 
   return (
-    <div className="relative w-4/12">
+    <div className="relative w-5/12">
       <div className="inline-flex w-full items-center">
         <IconSearch className="pointer-events-none absolute right-3 h-5 w-5 transform text-slate-600" />
         <input

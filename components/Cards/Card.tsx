@@ -21,9 +21,9 @@ const Card = ({
   background,
 }: Props) => {
   return (
-    <div>
+    <div className="w-full">
       <div
-        className={`relative flex h-[22rem] w-[28rem] flex-col justify-between overflow-hidden rounded-3xl p-6 text-slate-800 transition duration-500 ease-in-out ${background}`}
+        className={`relative flex w-full flex-col justify-between gap-10 overflow-hidden rounded-3xl p-6 text-slate-800 transition duration-500 ease-in-out ${background}`}
       >
         {/* Heading */}
         <div className="inline-flex items-center gap-2">
@@ -57,7 +57,7 @@ const Card = ({
           </div>
         </div>
         {/* Info Cards */}
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-row flex-wrap items-center justify-between">
           <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-slate-800 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-300">
             <span className="text-sm font-light text-white">
               {titleCase(
@@ -67,7 +67,7 @@ const Card = ({
                   .join(' ')
               )}
             </span>
-            <span className="text-xl text-white text-center">
+            <span className="text-center text-xl text-white">
               {infoCards[Object.keys(infoCards)[0]]}
             </span>
           </div>
@@ -80,7 +80,7 @@ const Card = ({
                   .join(' ')
               )}
             </span>
-            <span className="text-xl text-center">
+            <span className="text-center text-xl">
               {infoCards[Object.keys(infoCards)[1]]}
             </span>
           </div>
@@ -93,7 +93,7 @@ const Card = ({
                   .join(' ')
               )}
             </span>
-            <span className="text-xl text-center">
+            <span className="text-center text-xl">
               {infoCards[Object.keys(infoCards)[2]]}
             </span>
           </div>

@@ -44,7 +44,7 @@ const Cards = ({ weatherData }: any) => {
   return (
     <div>
       {weatherData ? (
-        <div className="flex flex-row flex-wrap gap-5 transition">
+        <div className="flex flex-row gap-5 transition">
           <Card
             category="Weather"
             message={`${weatherData?.weather[0]?.main}`}
