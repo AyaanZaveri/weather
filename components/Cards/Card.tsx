@@ -67,7 +67,7 @@ const Card = ({
                   .join(' ')
               )}
             </span>
-            <span className="text-xl text-white">
+            <span className="text-xl text-white text-center">
               {infoCards[Object.keys(infoCards)[0]]}
             </span>
           </div>
@@ -80,7 +80,7 @@ const Card = ({
                   .join(' ')
               )}
             </span>
-            <span className="text-xl">
+            <span className="text-xl text-center">
               {infoCards[Object.keys(infoCards)[1]]}
             </span>
           </div>
@@ -93,7 +93,7 @@ const Card = ({
                   .join(' ')
               )}
             </span>
-            <span className="text-xl">
+            <span className="text-xl text-center">
               {infoCards[Object.keys(infoCards)[2]]}
             </span>
           </div>

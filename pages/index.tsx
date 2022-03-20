@@ -6,6 +6,7 @@ import Cards from '../components/Cards/index'
 import Nav from '../components/Nav'
 import Sidebar from '../components/Sidebar'
 import { auth } from '../firebase'
+import { getMoonPhase } from '../lib/getMoonPhase'
 
 const Home: NextPage = () => {
   const [user] = useAuthState(auth)

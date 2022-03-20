@@ -2,20 +2,30 @@ import React, { useEffect, useState } from 'react'
 import { titleCase } from 'title-case'
 import Card from './Card'
 import { DateTime } from 'luxon'
+import { getMoonPhase } from '../../lib/getMoonPhase'
 
 const Cards = ({ weatherData }: any) => {
   const convertUnixTime = (
     unixTime: number,
     type: string,
-    showSeconds: boolean
+    showSeconds: boolean = false,
+    clock: string = '12'
   ) => {
     if (type == 'seconds' || type == 's') {
       return DateTime.fromSeconds(unixTime).toFormat(
-        `${showSeconds ? 'h:mm:ss a' : 'h:mm a'}`
+        `${
+          showSeconds
+            ? `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm:ss a`
+            : `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm a`
+        }`
       )
     } else if (type == 'milliseconds' || type == 'm') {
       return DateTime.fromMillis(unixTime).toFormat(
-        `${showSeconds ? 'h:mm:ss a' : 'h:mm a'}`
+        `${
+          showSeconds
+            ? `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm:ss a`
+            : `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm a`
+        }`
       )
     }
   }
@@ -24,11 +34,17 @@ const Cards = ({ weatherData }: any) => {
     `${convertUnixTime(Date.now(), 'milliseconds', true)}`
   )
 
+  const [moonPhase, setMoonPhase] = useState<string>('')
+
   useEffect(() => {
     setInterval(() => {
       setCurrentTime(`${convertUnixTime(Date.now(), 'milliseconds', true)}`)
     }, 1000)
   }, [])
+
+  getMoonPhase().then((res) => {
+    setMoonPhase(res)
+  })
 
   return (
     <div>
@@ -50,16 +66,20 @@ const Cards = ({ weatherData }: any) => {
           <Card
             category="Summary"
             message={currentTime}
-            temperature="390"
+            temperature={`${convertUnixTime(
+              weatherData?.sys.sunset,
+              'seconds',
+              false
+            )}`}
             feelsLike="AQI"
-            weather="West Wind"
+            weather="Sunset"
             infoCards={{
-              sunset: `${convertUnixTime(
-                weatherData?.sys.sunset,
+              sunrise: `${convertUnixTime(
+                weatherData?.sys.sunrise,
                 'seconds',
                 false
               )}`,
-              windSpeed: `${weatherData?.wind.speed} m/s`,
+              moonPhase: `${moonPhase}`,
               timeZone: `${
                 DateTime.fromSeconds(weatherData?.timezone).offsetNameShort
               }`,
