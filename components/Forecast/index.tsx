@@ -1,4 +1,5 @@
 import React from 'react'
+import { titleCase } from 'title-case'
 import { convertUnixTime } from '../../lib/convertUnixTime'
 
 const Forecast = ({ dailyWeatherData }: any) => {
@@ -17,23 +18,26 @@ const Forecast = ({ dailyWeatherData }: any) => {
         How's the temperature today?
       </h1>
       <div className="flex">
-        <div className="grid grid-cols-4 gap-3 w-full">
+        <div className="grid w-full grid-cols-4 gap-3">
           {todayWeather?.map((day: any, index: number) => (
-            <div className='w-full' key={index}>
-              <div className="flex h-24 w-full flex-row justify-between rounded-2xl bg-orange-500 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-orange-200">
+            <div className="w-full" key={index}>
+              <div className="flex h-28 w-full flex-row justify-between rounded-2xl bg-orange-500 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-orange-200">
                 <div className="flex items-center">
                   <div className="flex flex-col items-start justify-center ">
                     <span className="ml-4 text-sm font-light text-white">
-                      {convertUnixTime(day.dt)}
+                      @ {convertUnixTime(day?.dt)}
                     </span>
                     <div className="inline-flex items-center gap-2">
-                      <span className="ml-4 text-center text-2xl text-white">
+                      <span className="ml-4 text-center text-3xl text-white">
                         {`${Math.round(day?.main.temp)}°C`}
                       </span>
                       <span className="rounded-md bg-white px-1.5 py-0.5 text-xs">
                         {`${Math.round(day?.main.feels_like)}°C`}
                       </span>
                     </div>
+                    <span className="ml-4 text-xs font-light text-white">
+                      {titleCase(day?.weather[0].description)}
+                    </span>
                   </div>
                 </div>
                 <div className="flex flex-col items-end justify-center gap-2 p-2">

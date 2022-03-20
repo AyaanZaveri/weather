@@ -108,11 +108,11 @@ const CityIndex = ({
             />
             <HiStar
               onClick={handleFavorited}
-              className={`h-5 w-5 ${
+              className={`h-6 w-6 ${
                 checkIfFavoriteExists(city as string)
-                  ? 'text-orange-500'
-                  : 'text-slate-800'
-              } transition duration-500 ease-in-out hover:text-orange-500`}
+                  ? 'text-orange-500 hover:text-red-500'
+                  : 'text-slate-800 hover:text-orange-500'
+              } transition duration-500 ease-in-out hover:cursor-pointer`}
             />
           </div>
           <div className="flex flex-col gap-7">
