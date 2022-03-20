@@ -45,9 +45,9 @@ const Cards = ({ weatherData }: any) => {
     }, 1000)
   }, [])
 
-  getMoonPhase().then((res) => {
-    setMoonPhase(res)
-  })
+  // getMoonPhase().then((res) => {
+  //   setMoonPhase(res)
+  // })
 
   const router = useRouter()
 

@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import Cards from '../components/Cards/index'
+import Forecast from '../components/Forecast'
 import Nav from '../components/Nav'
 import Sidebar from '../components/Sidebar'
 import { auth } from '../firebase'
@@ -52,7 +53,7 @@ const Home: NextPage = () => {
       <div className="fixed flex h-screen flex-col items-center">
         <Sidebar name={user?.displayName!} photoURL={user?.photoURL!} />
       </div>
-      <div className="fixed ml-20 p-2">
+      <div className="fixed ml-20 p-2 overflow-y-auto h-full top-0 bottom-0 ">
         <Nav />
         <div className="flex flex-col gap-7 p-5">
           <div className="inline-flex items-center gap-3">
@@ -61,6 +62,7 @@ const Home: NextPage = () => {
             </h1>
           </div>
           {weatherData.weather ? <Cards weatherData={weatherData} /> : null}
+          <Forecast />
         </div>
       </div>
     </div>
