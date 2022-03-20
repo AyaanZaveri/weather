@@ -20,15 +20,6 @@ const Home: NextPage = () => {
 
   const [weatherData, setWeatherData] = useState<any>({})
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setCoordinates({
-        latitude: position.coords.latitude,
-        longitude: position.coords.longitude,
-      })
-    })
-  }, [])
-
   const getCurrentWeather = () => {
     axios
       .get(
@@ -43,10 +34,15 @@ const Home: NextPage = () => {
   }
 
   useEffect(() => {
-    getCurrentWeather()
-  })
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setCoordinates({
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+      })
+    })
 
-  console.log(weatherData)
+    getCurrentWeather()
+  }, [])
 
   return (
     <div className="font-outfit">
