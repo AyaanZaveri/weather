@@ -44,7 +44,9 @@ const Cards = ({ weatherData }: any) => {
   return (
     <div>
       {weatherData ? (
-        <div className="flex flex-row gap-5 transition">
+        <div className="grid grid-flow-col gap-5 transition" style={{
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+        }}>
           <Card
             category="Weather"
             message={`${weatherData?.weather[0]?.main}`}

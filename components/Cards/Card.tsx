@@ -57,8 +57,8 @@ const Card = ({
           </div>
         </div>
         {/* Info Cards */}
-        <div className="flex flex-row flex-wrap items-center justify-between">
-          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-slate-800 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-300">
+        <div className="grid grid-cols-3 gap-5">
+          <div className="flex h-20 w-full flex-col items-center justify-center rounded-2xl bg-slate-800 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-300">
             <span className="text-sm font-light text-white">
               {titleCase(
                 Object.keys(infoCards)[0]
@@ -71,7 +71,7 @@ const Card = ({
               {infoCards[Object.keys(infoCards)[0]]}
             </span>
           </div>
-          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-lime-300 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-lime-200">
+          <div className="flex h-20 w-full flex-col items-center justify-center rounded-2xl bg-lime-300 transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-lime-200">
             <span className="text-sm font-light">
               {titleCase(
                 Object.keys(infoCards)[1]
@@ -84,7 +84,7 @@ const Card = ({
               {infoCards[Object.keys(infoCards)[1]]}
             </span>
           </div>
-          <div className="flex h-20 w-28 flex-col items-center justify-center rounded-2xl bg-white transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-100">
+          <div className="flex h-20 w-full flex-col items-center justify-center rounded-2xl bg-white transition-all duration-500 ease-in-out hover:shadow-lg hover:shadow-slate-100">
             <span className="text-sm font-light">
               {titleCase(
                 Object.keys(infoCards)[2]
