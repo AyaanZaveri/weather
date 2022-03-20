@@ -19,6 +19,7 @@ const Home: NextPage = () => {
   })
 
   const [weatherData, setWeatherData] = useState<any>({})
+  const [dailyWeatherData, setDailyWeatherData] = useState<any>({})
 
   const getCurrentWeather = () => {
     axios
@@ -27,6 +28,19 @@ const Home: NextPage = () => {
       )
       .then((res) => {
         setWeatherData(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const getDailyWeather = () => {
+    axios
+      .get(
+        `https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_KEY}&units=metric`
+      )
+      .then((res) => {
+        setDailyWeatherData(res.data)
       })
       .catch((err) => {
         console.log(err)
@@ -44,6 +58,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     getCurrentWeather()
+    getDailyWeather()
   }, [coordinates])
 
   console.log(coordinates)
@@ -53,7 +68,7 @@ const Home: NextPage = () => {
       <div className="fixed flex h-screen flex-col items-center">
         <Sidebar name={user?.displayName!} photoURL={user?.photoURL!} />
       </div>
-      <div className="fixed ml-20 p-2 overflow-y-auto h-full top-0 bottom-0 ">
+      <div className="scrollbar fixed top-0 bottom-0 ml-20 h-full overflow-y-auto p-2 ">
         <Nav />
         <div className="flex flex-col gap-7 p-5">
           <div className="inline-flex items-center gap-3">
@@ -62,7 +77,7 @@ const Home: NextPage = () => {
             </h1>
           </div>
           {weatherData.weather ? <Cards weatherData={weatherData} /> : null}
-          <Forecast />
+          <Forecast dailyWeatherData={dailyWeatherData} />
         </div>
       </div>
     </div>
