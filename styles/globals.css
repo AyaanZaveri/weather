@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  @apply h-full overflow-hidden;
+}
+
+body {
+  @apply h-full overflow-auto;
+}
+
 .gradient-orange {
   background: linear-gradient(270deg, #fef9c3, #fef3c7, #ffedd5);
   background-size: 600% 600%;
