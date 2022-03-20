@@ -15,16 +15,16 @@ const Cards = ({ weatherData }: any) => {
       return DateTime.fromSeconds(unixTime).toFormat(
         `${
           showSeconds
-            ? `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm:ss a`
-            : `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm a`
+            ? `${clock == '12' ? 'h:mm:ss a' : clock == '24' ? 'H:mm:ss' : ''}`
+            : `${clock == '12' ? 'h:mm a' : clock == '24' ? 'H:mm' : ''}`
         }`
       )
     } else if (type == 'milliseconds' || type == 'm') {
       return DateTime.fromMillis(unixTime).toFormat(
         `${
           showSeconds
-            ? `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm:ss a`
-            : `${clock == '12' ? 'h' : clock == '24' ? 'H' : ''}:mm a`
+            ? `${clock == '12' ? 'h:mm:ss a' : clock == '24' ? 'H:mm:ss' : ''}`
+            : `${clock == '12' ? 'h:mm a' : clock == '24' ? 'H:mm' : ''}`
         }`
       )
     }
@@ -71,8 +71,13 @@ const Cards = ({ weatherData }: any) => {
               'seconds',
               false
             )}`}
-            feelsLike="AQI"
-            weather="Sunset"
+            feelsLike={`${convertUnixTime(
+              weatherData?.sys.sunset,
+              'seconds',
+              false,
+              '24'
+            )}`}
+            weather={"Sunset"}
             infoCards={{
               sunrise: `${convertUnixTime(
                 weatherData?.sys.sunrise,
