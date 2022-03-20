@@ -11,7 +11,7 @@ body {
 }
 
 .gradient-orange {
-  background: linear-gradient(270deg, #fef9c3, #fef3c7, #ffedd5);
+  background: linear-gradient(270deg, #fee2e2, #ffedd5, #fef3c7);
   background-size: 600% 600%;
 
   -webkit-animation: MovingGradient 3s ease infinite;
@@ -20,7 +20,7 @@ body {
 }
 
 .gradient-blue {
-  background: linear-gradient(270deg, #e0f2fe, #cffafe, #ccfbf1);
+  background: linear-gradient(270deg, #cffafe, #ccfbf1, #d1fae5);
   background-size: 600% 600%;
 
   -webkit-animation: MovingGradient 3s ease infinite;
