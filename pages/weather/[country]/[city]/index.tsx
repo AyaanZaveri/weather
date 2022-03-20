@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { titleCase } from 'title-case'
 import Cards from '../../../../components/Cards/index'
@@ -8,13 +8,22 @@ import Nav from '../../../../components/Nav'
 import Sidebar from '../../../../components/Sidebar'
 import { auth, db } from '../../../../firebase'
 import * as countries from 'i18n-iso-countries'
-import { HiStar } from 'react-icons/hi'
-import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
+import { HiStar, HiTrash } from 'react-icons/hi'
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from 'firebase/firestore'
+import { useCollection } from 'react-firebase-hooks/firestore'
 
-const CityIndex = ({ currentWeatherData }: any) => {
+const CityIndex = ({ currentWeatherData, country, city }: any) => {
   currentWeatherData = JSON.parse(currentWeatherData)
   const router = useRouter()
-  const { country: country, city } = router.query
 
   const [user] = useAuthState(auth)
 
@@ -36,6 +45,12 @@ const CityIndex = ({ currentWeatherData }: any) => {
   const userRef = doc(usersRef, user?.uid)
   const favoritesRef = collection(userRef, 'favorites')
 
+  const [favoritesSnapshot] = useCollection(favoritesRef)
+
+  const checkIfFavoriteExists = (city: string) => {
+    return favoritesSnapshot?.docs.find((doc) => doc.data().city === city)
+  }
+
   const addFavorite = async () => {
     const favorites = {
       country: country,
@@ -45,7 +60,24 @@ const CityIndex = ({ currentWeatherData }: any) => {
       timestamp: serverTimestamp(),
     }
 
-    await addDoc(favoritesRef, favorites)
+    if (!checkIfFavoriteExists(city as string)) {
+      await addDoc(favoritesRef, favorites)
+    }
+  }
+
+  const deleteFavorite = async () => {
+    const favoriteDoc = favoritesSnapshot?.docs.find(
+      (doc) => doc.data().city === city
+    )?.id
+    await deleteDoc(doc(favoritesRef, favoriteDoc))
+  }
+
+  const handleFavorited = () => {
+    if (checkIfFavoriteExists(city)) {
+      deleteFavorite()
+    } else {
+      addFavorite()
+    }
   }
 
   return (
@@ -66,8 +98,12 @@ const CityIndex = ({ currentWeatherData }: any) => {
               alt=""
             />
             <HiStar
-              onClick={addFavorite}
-              className="h-5 w-5 text-slate-800 transition duration-500 ease-in-out hover:text-orange-500"
+              onClick={handleFavorited}
+              className={`h-5 w-5 ${
+                checkIfFavoriteExists(city as string)
+                  ? 'text-orange-500'
+                  : 'text-slate-800'
+              } transition duration-500 ease-in-out hover:text-orange-500`}
             />
           </div>
           <Cards weatherData={currentWeatherData} />
@@ -81,9 +117,13 @@ export const getServerSideProps = async (context: any) => {
   const { data: currentWeatherData } = await axios.get(`
     https://api.openweathermap.org/data/2.5/weather?q=${context.query.city}, ${context.query.country}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_KEY}&units=metric`)
 
+  const { country, city } = context.query
+
   return {
     props: {
       currentWeatherData: JSON.stringify(currentWeatherData),
+      country: country,
+      city: city,
     },
   }
 }

@@ -3,6 +3,8 @@ import { titleCase } from 'title-case'
 import Card from './Card'
 import { DateTime } from 'luxon'
 import { getMoonPhase } from '../../lib/getMoonPhase'
+import { useRouter } from 'next/router'
+import { getTimeZone } from '../../lib/getTimeZone'
 
 const Cards = ({ weatherData }: any) => {
   const convertUnixTime = (
@@ -35,6 +37,7 @@ const Cards = ({ weatherData }: any) => {
   )
 
   const [moonPhase, setMoonPhase] = useState<string>('')
+  const [timeZone, setTimeZone] = useState<string>('')
 
   useEffect(() => {
     setInterval(() => {
@@ -45,6 +48,22 @@ const Cards = ({ weatherData }: any) => {
   getMoonPhase().then((res) => {
     setMoonPhase(res)
   })
+
+  const router = useRouter()
+
+  const { country, city } = router.query
+
+  const route = `${country}/${city}`
+
+  useEffect(() => {
+    getTimeZone(route)
+      .then((res) => {
+        setTimeZone(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <div>
@@ -77,7 +96,7 @@ const Cards = ({ weatherData }: any) => {
               false,
               '24'
             )}`}
-            weather={"Sunset"}
+            weather={'Sunset'}
             infoCards={{
               sunrise: `${convertUnixTime(
                 weatherData?.sys.sunrise,
@@ -86,7 +105,9 @@ const Cards = ({ weatherData }: any) => {
               )}`,
               moonPhase: `${moonPhase}`,
               timeZone: `${
-                DateTime.fromSeconds(weatherData?.timezone).offsetNameShort
+                timeZone
+                  ? timeZone
+                  : DateTime.fromSeconds(weatherData?.timezone).offsetNameShort
               }`,
             }}
             background="gradient-blue"
