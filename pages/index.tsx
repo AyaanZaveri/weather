@@ -1,7 +1,5 @@
 import axios from 'axios'
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import Cards from '../components/Cards/index'

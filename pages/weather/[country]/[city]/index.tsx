@@ -8,20 +8,8 @@ import Nav from '../../../../components/Nav'
 import Sidebar from '../../../../components/Sidebar'
 import { auth, db } from '../../../../firebase'
 import * as countries from 'i18n-iso-countries'
-import { IconStar } from '@tabler/icons'
 import { HiStar } from 'react-icons/hi'
-import {
-  addDoc,
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  serverTimestamp,
-  setDoc,
-  where,
-} from 'firebase/firestore'
+import { addDoc, collection, doc, serverTimestamp } from 'firebase/firestore'
 
 const CityIndex = ({ currentWeatherData }: any) => {
   currentWeatherData = JSON.parse(currentWeatherData)
