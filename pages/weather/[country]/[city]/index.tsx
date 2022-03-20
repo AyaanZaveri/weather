@@ -20,8 +20,14 @@ import {
   where,
 } from 'firebase/firestore'
 import { useCollection } from 'react-firebase-hooks/firestore'
+import Forecast from '../../../../components/Forecast'
 
-const CityIndex = ({ currentWeatherData, country, city }: any) => {
+const CityIndex = ({
+  currentWeatherData,
+  country,
+  city,
+  dailyWeatherData,
+}: any) => {
   currentWeatherData = JSON.parse(currentWeatherData)
   const router = useRouter()
 
@@ -106,7 +112,10 @@ const CityIndex = ({ currentWeatherData, country, city }: any) => {
               } transition duration-500 ease-in-out hover:text-orange-500`}
             />
           </div>
-          <Cards weatherData={currentWeatherData} />
+          <div className="flex flex-col gap-7">
+            <Cards weatherData={currentWeatherData} />
+            <Forecast dailyWeatherData={dailyWeatherData} />
+          </div>
         </div>
       </div>
     </div>
@@ -114,14 +123,19 @@ const CityIndex = ({ currentWeatherData, country, city }: any) => {
 }
 
 export const getServerSideProps = async (context: any) => {
-  const { data: currentWeatherData } = await axios.get(`
-    https://api.openweathermap.org/data/2.5/weather?q=${context.query.city}, ${context.query.country}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_KEY}&units=metric`)
-
   const { country, city } = context.query
+
+  const { data: currentWeatherData } = await axios.get(`
+    https://api.openweathermap.org/data/2.5/weather?q=${city}, ${country}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_KEY}&units=metric`)
+
+  const { data: dailyWeatherData } = await axios.get(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${city}, ${country}&appid=${process.env.NEXT_PUBLIC_OPENWEATHERMAP_KEY}&units=metric`
+  )
 
   return {
     props: {
       currentWeatherData: JSON.stringify(currentWeatherData),
+      dailyWeatherData: JSON.stringify(dailyWeatherData),
       country: country,
       city: city,
     },
