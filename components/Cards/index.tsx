@@ -5,33 +5,9 @@ import { DateTime } from 'luxon'
 import { getMoonPhase } from '../../lib/getMoonPhase'
 import { useRouter } from 'next/router'
 import { getTimeZone } from '../../lib/getTimeZone'
+import { convertUnixTime } from '../../lib/convertUnixTime'
 
 const Cards = ({ weatherData }: any) => {
-  const convertUnixTime = (
-    unixTime: number,
-    type: string,
-    showSeconds: boolean = false,
-    clock: string = '12'
-  ) => {
-    if (type == 'seconds' || type == 's') {
-      return DateTime.fromSeconds(unixTime).toFormat(
-        `${
-          showSeconds
-            ? `${clock == '12' ? 'h:mm:ss a' : clock == '24' ? 'H:mm:ss' : ''}`
-            : `${clock == '12' ? 'h:mm a' : clock == '24' ? 'H:mm' : ''}`
-        }`
-      )
-    } else if (type == 'milliseconds' || type == 'm') {
-      return DateTime.fromMillis(unixTime).toFormat(
-        `${
-          showSeconds
-            ? `${clock == '12' ? 'h:mm:ss a' : clock == '24' ? 'H:mm:ss' : ''}`
-            : `${clock == '12' ? 'h:mm a' : clock == '24' ? 'H:mm' : ''}`
-        }`
-      )
-    }
-  }
-
   const [currentTime, setCurrentTime] = useState<string>(
     `${convertUnixTime(Date.now(), 'milliseconds', true)}`
   )
@@ -103,7 +79,9 @@ const Cards = ({ weatherData }: any) => {
                 'seconds',
                 false
               )}`,
-              moonPhase: ``,
+              highAndLow: `${Math.round(
+                weatherData?.main.temp_max
+              )}°C / ${Math.round(weatherData?.main.temp_min)}°C`,
               timeZone: `${
                 timeZone
                   ? timeZone
