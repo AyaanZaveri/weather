@@ -39,9 +39,13 @@ const Home: NextPage = () => {
         longitude: position.coords.longitude,
       })
     })
-
-    getCurrentWeather()
   }, [])
+
+  useEffect(() => {
+    getCurrentWeather()
+  }, [coordinates])
+
+  console.log(coordinates)
 
   return (
     <div className="font-outfit">
