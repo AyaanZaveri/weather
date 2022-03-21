@@ -94,7 +94,7 @@ const CityIndex = ({
       <div className="fixed flex h-screen flex-col items-center">
         <Sidebar name={user?.displayName!} photoURL={user?.photoURL!} />
       </div>
-      <div className="scrollbar fixed ml-20 h-full overflow-y-auto p-2 w-9/12">
+      <div className="scrollbar fixed ml-20 h-full overflow-y-auto p-2 w-9/12 max-w-6xl">
         <Nav />
         <div className="flex flex-col gap-7 p-5">
           <div className="inline-flex items-center gap-3">
